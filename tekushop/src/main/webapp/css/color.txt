@@ -1,0 +1,4 @@
+first-color: #133E87
+second-color: #608BC1
+3rd color: #CBDCEB
+4th color: #F3F3E0
