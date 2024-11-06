@@ -1,7 +1,9 @@
 package com.example.tekushop.controller;
 
+import com.example.tekushop.model.Clothing;
 import com.example.tekushop.model.Order;
 import com.example.tekushop.model.User;
+import com.example.tekushop.service.ClothingService;
 import com.example.tekushop.service.order.OrderService;
 
 import javax.servlet.RequestDispatcher;
@@ -21,14 +23,16 @@ public class BuyClothingServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
+        ClothingService clothingService = new ClothingService();
         if (user == null ) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else if(user.getRole().equals("customer")) {
             int productId = Integer.parseInt(request.getParameter("id"));
             int userId = user.getId();
             List<Order> listOrder = orderService.getListOrder(userId);
-            System.out.println(listOrder);
+            Clothing clothing = clothingService.findClothes(productId, null, null, 0, 0, 0, 0).get(0);
             request.setAttribute("listOrder", listOrder);
+            request.setAttribute("clothingInfo", clothing);
             request.setAttribute("product_id", productId);
             request.setAttribute("user_id", userId);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("buy-clothing.jsp");
@@ -41,6 +45,7 @@ public class BuyClothingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderService orderService = new OrderService();
+ 
         int user_id = Integer.parseInt(req.getParameter("user_id"));
         int product_id = Integer.parseInt(req.getParameter("product_id"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));

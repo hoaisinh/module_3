@@ -50,6 +50,7 @@ a{
     font-size: 16px;
     cursor: pointer;
     font-weight: 400;
+    border: unset;
 }
 .btn-blue:hover{
     background-color: #0d2c6d;
@@ -151,4 +152,69 @@ background-color: #f9f9f9;
     color: white;
     font-size: 16px;
     font-weight: 300;
+}
+.buy-clothing-page{
+    max-width: 1280px;
+    margin: 30px auto;
+    box-shadow: 0 0 3px 0 #a6a6a6;
+    border-radius: 12px;
+    text-align: center;
+}
+.order-item{
+    margin-bottom: 26px;
+}
+.order-info{
+    background-color: #0a57a2;
+    color: white;
+    padding: 5px 0;
+    border-radius: 3px 3px 0 0;
+    text-align: left;
+}
+.order-item-child{
+    margin: 0 0 0 12px;
+    background-color: #00000021;
+    right: 0;
+    position: relative;
+    border-radius: 0 0 3px 3px;
+    padding: 18px 12px;
+}
+.order-list{
+    margin: 0;
+    padding: 12px;
+}
+.order-item img{
+    width: 100%;
+    aspect-ratio: 1.5 / 1;
+    border-radius: 6px;
+}
+.order-item-info{
+    text-align: left;
+}
+.order-item-info p{
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+.productInfo img{
+    width: 100%;
+    border-radius: 12px;
+}
+.productBuy{
+    text-align: left;
+    padding: 0 0 0 42px;
+}
+.productBuy h3{
+    color: #02294f;
+    font-weight: 600;
+    font-size: 36px;
+    margin-bottom: 26px;
+}
+.productBuy p{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.productBuy input{
+    display: block;
+    border-radius: 6px;
+    border: 1px #b1d2f2 solid;
 }
