@@ -6,9 +6,8 @@ import com.example.tekushop.model.Order;
 import com.example.tekushop.model.OrderItem;
 import com.example.tekushop.model.User;
 import com.example.tekushop.repository.BaseDatabase;
-import com.example.tekushop.repository.ClothingRepo;
+import com.example.tekushop.repository.clothing.ClothingRepo;
 import com.example.tekushop.repository.UserRepo;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.sql.Connection;
 import java.sql.Date;

@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" />
 <main class="buy-clothing-page">
-    <h1>Buy</h1>
-    <div>product_id:${product_id}</div>
+    <c:if test="${not empty product_id}">
+
+    <h1>Buy Clothes</h1>
     <div class="row">
         <div class="productInfo col-6">
             <img src="uploads/image/${clothingInfo.images[0]}" />
@@ -28,6 +29,7 @@
             <p>${message}</p>
         </c:if>
     </div>
+    </c:if>
     <h2>Order List</h2>
     <div class="row order-list">
         <c:if test="${listOrder.isEmpty()}">

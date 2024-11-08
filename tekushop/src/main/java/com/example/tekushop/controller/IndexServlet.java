@@ -1,7 +1,7 @@
 package com.example.tekushop.controller;
 
 import com.example.tekushop.model.Clothing;
-import com.example.tekushop.service.ClothingService;
+import com.example.tekushop.service.clothing.ClothingService;
 
 
 import javax.servlet.RequestDispatcher;
