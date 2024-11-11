@@ -1,4 +1,4 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.clothing;
 
 import com.example.tekushop.model.Clothing;
 import com.example.tekushop.model.User;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class ClothingManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         //Check user permission
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");

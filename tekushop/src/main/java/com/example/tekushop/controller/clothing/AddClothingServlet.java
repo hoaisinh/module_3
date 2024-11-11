@@ -1,16 +1,19 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.clothing;
 
 import com.example.tekushop.common.FileUpload;
+import com.example.tekushop.common.FileUploadHandler;
 import com.example.tekushop.model.Clothing;
 import com.example.tekushop.model.User;
 import com.example.tekushop.service.clothing.ClothingService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 
 @WebServlet(name = "AddClothingServlet", urlPatterns = {"/clothing-management/add"})
@@ -26,7 +29,8 @@ public class AddClothingServlet extends HttpServlet {
         }
         request.setAttribute("user",user);
 
-        response.sendRedirect("/add-clothing.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/add-clothing.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -43,24 +47,46 @@ public class AddClothingServlet extends HttpServlet {
             String name = req.getParameter("name");
             String clothesType = req.getParameter("clothesType");
             String color = req.getParameter("color");
-        System.out.println(req.getParameter("color"));
             int size = Integer.parseInt(req.getParameter("size"));
             int price = Integer.parseInt(req.getParameter("price"));
             String description = req.getParameter("description");
             int stock = Integer.parseInt(req.getParameter("quantity"));
-
-            Part part = req.getPart("images");
-            String[] images = new String[1];
-
             LocalDate dateAdded = LocalDate.now();
             LocalDate dateModified = LocalDate.now();
+            int sold = 1;
+            String[] images = new String[1];
 
-            String uploadPath = req.getServletContext().getRealPath("") + File.separator+"uploads"+File.separator+"image";
-            String filePath = FileUpload.uploadFile(part, uploadPath);
+
+            Part filePart = req.getPart("images");
+
+        String filePath = "";
+        if (filePart != null) {
+                String fileName = filePart.getSubmittedFileName();
+                InputStream fileContent = filePart.getInputStream();
+                FileUploadHandler fileUploadHandler = new FileUploadHandler();
+                String fileUrl = fileUploadHandler.uploadFileToS3(fileName, fileContent);
+                if (fileUrl != null) {
+
+                    filePath = fileUrl;
+                } else {
+                    resp.getWriter().println("Failed to upload file.");
+                }
+            } else {
+                resp.getWriter().println("No file uploaded.");
+            }
             images[0] = filePath;
-            Clothing clothing = new Clothing(name, clothesType, color, size, dateAdded,dateModified,images, price,stock,1, description);
-            clothingService.addClothes(clothing);
 
+            boolean isAdded = clothingService.addClothes(name, clothesType, color, size,dateAdded,dateModified,images, price, stock, sold, description,  req);
+            if(!isAdded){
+                Clothing tempClothing = new Clothing(name, clothesType, color, size, dateAdded, dateModified, images, price, stock, sold, description);
+                req.setAttribute("clothing", tempClothing);
+                req.getRequestDispatcher("/add-clothing.jsp").forward(req, resp);
+
+            }else {
+                req.setAttribute("success", "Clothing added successfully");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/add-clothing.jsp");
+                dispatcher.forward(req, resp);
+            }
             resp.sendRedirect("/clothing-management");
     }
 }

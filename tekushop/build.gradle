@@ -1,6 +1,7 @@
 plugins {
   id 'java'
   id 'war'
+  id 'application' // Áp dụng plugin ứng dụng Java
 }
 
 group 'com.example'
@@ -8,6 +9,10 @@ version '1.0-SNAPSHOT'
 
 repositories {
   mavenCentral()
+}
+
+application {
+   mainClassName = 'com.example.tekushop.MainS3'  // Set your main class here
 }
 
 ext {
@@ -24,6 +29,11 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+  // Thêm AWS SDK cho S3
+  implementation 'com.amazonaws:aws-java-sdk-s3:1.12.116'  // Phiên bản AWS SDK
+
+  // Các thư viện khác (nếu có)
+  implementation 'com.amazonaws:aws-java-sdk-core:1.12.116'
   compileOnly "javax.servlet:javax.servlet-api:${servletApiVersion}"
   implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

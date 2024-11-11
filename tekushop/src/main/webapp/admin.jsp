@@ -5,14 +5,21 @@
     <h1>Admin Page</h1>
     <div class="row admin-content">
         <div class="col-4 admin-action">
-            <a href="clothing-management" class="btn-blue">Clothing</a>
+            <h3>Action</h3>
+            <a href="clothing-management" class="btn btn-outline-primary">Clothing Management</a>
             <c:if test="${userObj.role == 'admin'}">
-                <a href="user-mng" class="btn-blue">User</a>
-                <a href="order-mng" class="btn-blue">Order</a>
+                <a href="user-management" class="btn btn-outline-primary">User Management</a>
+                <a href="order-management" class="btn btn-outline-primary">Order Management</a>
             </c:if>
         </div>
-        <div class="col-8 admin-action">
-            <h2>Hello ${userObj.username}</h2>
+        <div class="col-8 admin-info">
+            <h3>User Info</h3>
+            <ul>
+                <li><span>Username:</span> ${userObj.username}</li>
+                <li><span>Email:</span> ${userObj.email}</li>
+                <li><span>User Type:</span> ${userObj.role}</li>
+            </ul>
+
         </div>
     </div>
 

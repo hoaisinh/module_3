@@ -53,6 +53,28 @@ public class ClothingRepo implements ClothingInterfaceRepo<Clothing> {
 
     @Override
     public void updateClothes(Clothing clothing) {
+        BaseDatabase baseDatabase = new BaseDatabase();
+        Connection connection = baseDatabase.getConnection();
+        String query = "UPDATE clothing SET name = ?, clothesType = ?, color = ?, size = ?, dateAdded = ?, dateModified = ?, images = ?, price = ?, stock = ?, sold = ?, description = ? WHERE id = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, clothing.getName());
+            preparedStatement.setString(2, clothing.getClothesType());
+            preparedStatement.setString(3, clothing.getColor());
+            preparedStatement.setInt(4, clothing.getSize());
+            preparedStatement.setDate(5, Date.valueOf(clothing.getDateAdded()));
+            preparedStatement.setDate(6, Date.valueOf(clothing.getDateModified()));
+            preparedStatement.setString(7, String.join(",", clothing.getImages()));
+            preparedStatement.setInt(8, clothing.getPrice());
+            preparedStatement.setInt(9, clothing.getStock());
+            preparedStatement.setInt(10, clothing.getSold());
+            preparedStatement.setString(11, clothing.getDescription());
+            preparedStatement.setInt(12, clothing.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
 
     }
 
@@ -135,5 +157,13 @@ public class ClothingRepo implements ClothingInterfaceRepo<Clothing> {
             throw new RuntimeException(ex);
         }
         return clothingColorList;
+    }
+    public Clothing getClothingById(int id){
+        List<Clothing> clothingList = findClothes(id, null, null, 0, 0, 0, 0);
+        if(clothingList.size() > 0){
+            return clothingList.get(0);
+        }else {
+            return null;
+        }
     }
 }

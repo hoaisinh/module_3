@@ -21,7 +21,7 @@ public class OrderRepo implements IOrderRepo {
     public Clothing getClothing(int productId) {
         ClothingRepo ClothingRepo = new ClothingRepo();
         List<Clothing> clothingList = null;
-        clothingList = ClothingRepo.findClothes(productId, "%", "%", 0, 999, 999, 0);
+        clothingList = ClothingRepo.findClothes(productId, "%", "%", 0, 99999999, 999, 0);
         return clothingList.get(0);
 
     }
@@ -96,7 +96,7 @@ public class OrderRepo implements IOrderRepo {
         BaseDatabase baseDatabase = new BaseDatabase();
         Connection connection = baseDatabase.getConnection();
         List<Order> orderList = new ArrayList<>();
-        String query = "SELECT * FROM Orders WHERE customer_id = ? OR ? = 0";
+        String query = "SELECT * FROM Orders WHERE customer_id = ? OR ? = 0 ORDER BY order_id DESC limit 999";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, userId);

@@ -7,7 +7,7 @@
     <h1>Buy Clothes</h1>
     <div class="row">
         <div class="productInfo col-6">
-            <img src="uploads/image/${clothingInfo.images[0]}" />
+            <img src="${clothingInfo.images[0]}" />
         </div>
         <div class="productBuy col-6">
             <h3>Name: ${clothingInfo.name}</h3>
@@ -36,9 +36,31 @@
             <p>No order found</p>
         </c:if>
         <c:if test="${!listOrder.isEmpty()}">
+            <div class="order-item w-100">
+                <div class="row order-info" >
+                    <div class="col-2">
+                            Username
+                    </div>
+                    <div class="col-2">
+                            Order date
+                    </div>
+                    <div class="col-2">
+                            Order Status
+                    </div>
+                    <div class="col-2">
+                            Total Amount
+                    </div>
+                    <div class="col-2">
+                            Payment Status
+                    </div>
+                    <div class="col-2">
+                            Payment Method
+                    </div>
+                </div>
+            </div>
             <c:forEach var="order" items="${listOrder}">
                 <div class="order-item w-100">
-                    <div class="row order-info">
+                    <div class="row order-info  bg-light pt-2 pb-2 text-dark shadow-sm collapsed" data-bs-toggle="collapse" href="#collapse_id${order.orderId}" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <div class="col-2">
                                 ${order.customer.username}
                         </div>
@@ -59,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="row w-100 order-item-child">
+                    <div class="row w-100 order-item-child collapse" id="collapse_id${order.orderId}">
                         <c:if test="${order.orderItems.isEmpty()}">
                             <p>No order-item found</p>
                         </c:if>
@@ -67,9 +89,9 @@
                             <c:forEach var="orderItem" items="${order.orderItems}">
                                 <div class="row order-item w-100">
                                     <div class="col-4">
-                                        <img src="uploads/image/${orderItem.clothing.images[0]}">
+                                        <img src="${orderItem.clothing.images[0]}">
                                     </div>
-                                    <div class="col-4 order-item-info">
+                                    <div class="col-4 order-item-info" >
                                         <h3>Name: ${orderItem.clothing.name}</h3>
                                         <p class="desc">Descripton: ${orderItem.clothing.description}</p>
                                     </div>

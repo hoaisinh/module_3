@@ -15,6 +15,7 @@ public class FileUpload {
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
         }
+        System.out.println(uploadDir.getPath());
         String filePath = uploadDir + File.separator + fileName;
         filePart.write(filePath);
         return fileName;

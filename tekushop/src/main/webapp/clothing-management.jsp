@@ -3,8 +3,8 @@
 <jsp:include page="header.jsp" />
 <main class="clothing-management">
     <h1>Clothing Management </h1>
-    <div class="add-clothing">
-        <a href="/clothing-management/add" class="btn-blue">Add Clothing</a>
+    <div class="add">
+        <a href="/clothing-management/add" class="btn-blue"><i class="bi bi-plus-lg"></i> Add Clothing</a>
     </div>
     <div class="search-bar w-100">
         <form action="clothing-management" class="row search-clothing">
@@ -33,14 +33,14 @@
                 </div>
             </c:forEach>
             <div class="form-group col">
-               <br>
+                <div class="label-temp" style="height: 34px"></div>
             <button type="submit" class="btn-blue col">Search</button>
                 <a href="http://localhost:8080/clothing-management?clothesType=&color=&minPrice=&maxPrice=" class="btn-blue">Clear</a>
             </div>
         </form>
     </div>
     <div class="clothing-list">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -54,16 +54,16 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="clothing" items="${clothingList}">
+                <c:forEach var="clothing" items="${clothingList}" varStatus="status">
                     <tr>
-                        <td>${clothing.id}</td>
+                        <td>${status.index+1}</td>
                         <td>${clothing.name}</td>
                         <td>${clothing.clothesType}</td>
                         <td>${clothing.color}</td>
                         <td>${clothing.price}</td>
                         <td>${clothing.stock}</td>
                         <td>
-                            <a href="/clothing-management/edit?id=${clothing.id}" class="btn-blue"></a>
+                            <a href="/edit-clothing?id=${clothing.id}" class="btn-blue">Edit</a>
 <%--                            <button data-bs-toggle="modal" data-toggle="modal" data-target="#deleteClothing${clothing.id}"  class="btn btn-sm btn-danger deleteClothing">Delete</button>--%>
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteClothing${clothing.id}">
                                 Delete

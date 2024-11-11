@@ -1,4 +1,4 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.clothing;
 
 import com.example.tekushop.model.Clothing;
 import com.example.tekushop.model.Order;
@@ -53,12 +53,14 @@ public class BuyClothingServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         int user_id_session = user.getId();
-        List<Order> listOrder = orderService.getListOrder(user_id_session);
+
         int user_id = Integer.parseInt(req.getParameter("user_id"));
         int product_id = Integer.parseInt(req.getParameter("product_id"));
+        //System.out.println("product_id: " + product_id);
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         Boolean isOrder = orderService.addOrder(user_id, product_id, quantity);
         if(isOrder) {
+            List<Order> listOrder = orderService.getListOrder(user_id_session);
             req.setAttribute("listOrder", listOrder);
             req.setAttribute("message", "Order is successful");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("buy-clothing.jsp");

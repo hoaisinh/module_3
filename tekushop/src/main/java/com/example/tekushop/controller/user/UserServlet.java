@@ -1,4 +1,4 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.user;
 
 import com.example.tekushop.model.User;
 

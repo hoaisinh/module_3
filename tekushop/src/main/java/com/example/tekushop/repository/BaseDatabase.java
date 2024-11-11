@@ -14,7 +14,7 @@ public class BaseDatabase {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("đã kết nối database");
+
         } catch (SQLException e) {
             System.out.println("---------------------------------------------------------------");
             throw new RuntimeException(e);

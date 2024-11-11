@@ -12,7 +12,7 @@
     <c:forEach var="dress" items="${indexData['clothingList']}">
       <div class="col-3 mb-4">
         <div class="dress-item ">
-          <img src="uploads/image/${dress.images[0]}" alt="${dress.name}" />
+          <img src="${dress.images[0]}" alt="${dress.name}" />
           <div class="clothing-content">
             <h3>${dress.name}</h3>
             <div class="clothing-description">

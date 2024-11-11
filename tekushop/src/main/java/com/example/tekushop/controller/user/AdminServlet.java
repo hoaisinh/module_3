@@ -1,4 +1,4 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.user;
 
 import com.example.tekushop.model.User;
 
@@ -27,6 +27,5 @@ public class AdminServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
             requestDispatcher.forward(request, response);
         }
-
     }
 }

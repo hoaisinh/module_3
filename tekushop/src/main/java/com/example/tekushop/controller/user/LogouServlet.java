@@ -1,4 +1,4 @@
-package com.example.tekushop.controller;
+package com.example.tekushop.controller.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

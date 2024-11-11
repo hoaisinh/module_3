@@ -36,7 +36,8 @@ a{
 }
 .dress-item img{
     width: 100%;
-    height: auto;
+
+    aspect-ratio: 1/1;
 }
 .dress-item{
     border-radius: 12px;
@@ -152,6 +153,30 @@ background-color: #f9f9f9;
     color: white;
     font-size: 16px;
     font-weight: 300;
+    line-height: 80px;
+    position: relative;
+}
+.loginDiv:hover .hidden-menu{
+    display: block;
+
+}
+.hidden-menu{
+    display: none;
+    position: absolute;
+    line-height: 1;
+    background-color: white;
+    padding: 10px;
+    border-radius: 0 0 6px 6px;
+}
+.hidden-menu a{
+    display: block;
+    line-height: 1.5;
+    color: black;
+    font-weight: 400;
+
+}
+.hidden-menu a:hover{
+    color: #0a57a2 !important;
 }
 .buy-clothing-page{
     max-width: 1280px;
@@ -236,4 +261,71 @@ background-color: #f9f9f9;
 }
 .clothing-management .clothing-list{
     padding: 20px;
+}
+.add-clothing{
+    max-width: 1280px;
+    text-align: center;
+    margin: 36px auto;
+    box-shadow: 0 0 3px 0 #0000004a;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 20px;
+}
+.add-clothing legend{
+   color: #02294f;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+form label{
+    margin-top: 12px;
+}
+.loginDiv a{
+    margin: 0 6px;
+}
+.loginDiv a:hover{
+    color: white;
+    transition: all 0.5s;
+    text-decoration: underline;
+}
+.register{
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 0 3px #0000004d;
+    padding: 10px;
+    border-radius: 8px;
+}
+.register h2{
+    margin: 0 0 20px 0;
+}
+.add{
+    padding: 0 30px;
+}
+.admin-page{
+    max-width: 1280px;
+    margin: 36px auto;
+    box-shadow: 0 0 3px 0 #00000069;
+    padding: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.admin-page h1{
+    color: #02294f;
+    font-size: 32px;
+    border-bottom: 1px #02294f6e solid;
+    padding-bottom: 12px;
+    margin-bottom: 26px;
+}
+.admin-action a{
+    display: block;
+    width: fit-content;
+    min-width: 200px;
+    text-align: left;
+    /* border: unset; */
+    /* background-color: #08080829; */
+    margin-bottom: 12px;
+}
+.admin-info span{
+    width: 120px;
+    display: inline-block;
 }

@@ -16,27 +16,38 @@
 <header>
     <div class="row w-100 navBar m-0">
         <div class="col-2 logo">
-            <img src="uploads/image/logo.png"  alt="logo">
+            <img src="${pageContext.request.contextPath}/uploads/image/logo.png"  alt="logo">
         </div>
         <div class="col-8  menu" >
             <a class="" href="http://localhost:8080">Home</a>
-            <a class="" href="${pageContext.request.contextPath}/list-clothes">Danh mục</a>
+            <a class="" href="${pageContext.request.contextPath}/list-clothes">Something</a>
             <a class="" href="${pageContext.request.contextPath}/about-us">About Us</a>
         </div>
         <div class="col-2 loginDiv">
             <c:choose>
                 <c:when test="${not empty user}">
-                    <span>Hello, ${user.username}</span>
-                    <a href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i></a>
+                    <span>Hello, ${user.username} <i class="bi bi-caret-down"></i></span>
+                    <div class="hidden-menu">
+                        <c:if test="${user.role == 'customer'}">
+                            <a href="${pageContext.request.contextPath}/buy-clothing">Purchare History</a>
+                            <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                        </c:if>
+                        <c:if test="${user.role == 'admin' || user.role == 'editor'}">
+                            <a href="${pageContext.request.contextPath}/admin">Admin Page</a>
+                            <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                        </c:if>
+                    </div>
+
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login"><i class="bi bi-person-fill-add"></i></a>
+                    <a href="${pageContext.request.contextPath}/login">Login</a>|
+                    <a href="${pageContext.request.contextPath}/register">Register</a>
                 </c:otherwise>
             </c:choose>
 
         </div>
     </div>
     <div class="headerBanner">
-        <img src="uploads/image/shutterstock_2424932097.png" alt="">
+        <img src="${pageContext.request.contextPath}/uploads/image/shutterstock_2424932097.png" alt="">
     </div>
 </header>

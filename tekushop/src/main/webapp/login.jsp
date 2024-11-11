@@ -5,6 +5,9 @@
 
     <form action="/login" method="post" class="login-form">
         <legend>Log in</legend>
+        <c:if test="${error != null}">
+            <p class="text-danger error">${error}</p>
+        </c:if>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
